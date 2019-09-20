@@ -26,3 +26,21 @@ Example:
 Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
 """
+
+# 其实没有想很明白，这么做一定可以？
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        n = len(height)
+        i, j = 0, n - 1
+        volume = 0
+        while i < n - 1 and j > 0:
+            if height[i] < height[j]:
+                vol = height[i] * (j - i)
+                i += 1
+            else:
+                vol = height[j] * (j - i)
+                j -= 1
+            if vol > volume:
+                volume = vol
+        return volume
